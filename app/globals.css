@@ -140,7 +140,7 @@ body {
   }
 
   .p-regular-24 {
-    @apply font-normal text-[24px] leading-[36px];
+    @apply font-normal text-[22px] leading-[36px];
   }
 
   /* 20 */

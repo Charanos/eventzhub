@@ -17,7 +17,7 @@ const Footer = () => {
                 </Link>
 
                 <p className="uppercase font-semibold text-muted-foreground text-sm">
-                    &copy;EventzHub by wormwood;. All Rights Reserved.
+                    &copy;EventzHub by wormwood. All Rights Reserved.
                 </p>
             </div>
         </footer>

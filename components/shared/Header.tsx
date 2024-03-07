@@ -30,8 +30,8 @@ const Header = () => {
     return (
         <header
             className={`w-full transition-all duration-300 fixed top-0 ${isScrolled
-                    ? "bg-white/30 backdrop-blur-xl shadow-lg rounded-full mt-4"
-                    : "bg-transparent"
+                ? "bg-white/30 z-50 backdrop-blur-md grid place-self-center shadow-lg rounded-full w-[97vw]  mt-4"
+                : "bg-transparent"
                 }`}
         >
             <div className="wrapper flex items-center justify-between">

@@ -15,6 +15,7 @@ export async function createUser(user: CreateUserParams) {
         await connectToDatabase();
 
         const newUser = await User.create(user);
+
         return JSON.parse(JSON.stringify(newUser));
     } catch (error) {
         handleError(error);
@@ -75,7 +76,7 @@ export async function deleteUser(clerkId: string) {
             ),
         ]);
 
-        // Delete user
+        // Delete user 
         const deletedUser = await User.findByIdAndDelete(userToDelete._id);
         revalidatePath("/");
 

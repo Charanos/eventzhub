@@ -99,40 +99,40 @@ body {
   /* TYPOGRAPHY */
   /* 64 */
   .h1-bold {
-    @apply font-bold text-[40px] leading-[48px] lg:text-[48px] lg:leading-[60px]  xl:text-[58px] xl:leading-[74px];
+    @apply font-semibold capitalize text-[#333] text-[40px] leading-[48px] lg:text-[45px] lg:leading-[60px]  xl:text-[55px] xl:leading-[74px];
   }
 
   /* 40 */
   .h2-bold {
-    @apply font-bold text-[32px] leading-[40px] lg:text-[36px] lg:leading-[44px] xl:text-[40px] xl:leading-[48px];
+    @apply font-semibold capitalize text-[#333] text-[28px] leading-[40px] lg:text-[28px] lg:leading-[30px] xl:text-[35px] xl:leading-[30px];
   }
 
   .h2-medium {
-    @apply font-medium text-[32px] leading-[40px] lg:text-[36px] lg:leading-[44px] xl:text-[40px] xl:leading-[48px];
+    @apply font-medium capitalize text-[#333] text-[32px] leading-[40px] lg:text-[36px] lg:leading-[44px] xl:text-[40px] xl:leading-[48px];
   }
 
   /* 36 */
   .h3-bold {
-    @apply font-bold text-[28px] leading-[36px] md:text-[36px] md:leading-[44px];
+    @apply font-semibold capitalize text-[#333] text-[28px] leading-[36px] md:text-[36px] md:leading-[44px];
   }
 
   .h3-medium {
-    @apply font-medium text-[28px] leading-[36px] md:text-[36px] md:leading-[44px];
+    @apply font-medium text-[#333] text-[28px] leading-[36px] md:text-[36px] md:leading-[44px];
   }
 
   /* 32 */
   .h4-medium {
-    @apply font-medium text-[32px] leading-[40px];
+    @apply font-medium text-[#333] text-[32px] leading-[40px];
   }
 
   /* 28 */
   .h5-bold {
-    @apply font-bold text-[28px] leading-[36px];
+    @apply font-semibold text-[#333] text-[28px] leading-[36px];
   }
 
   /* 24 */
   .p-bold-24 {
-    @apply font-bold text-[24px] leading-[36px];
+    @apply font-semibold text-[#333] text-[24px] leading-[36px];
   }
 
   .p-medium-24 {
@@ -145,7 +145,7 @@ body {
 
   /* 20 */
   .p-bold-20 {
-    @apply font-bold text-[20px] leading-[30px] tracking-[2%];
+    @apply font-semibold text-[17px] leading-[30px] tracking-[2%];
   }
 
   .p-semibold-20 {

@@ -13,7 +13,7 @@ export interface IEvent extends Document {
     description?: string;
     startDateTime?: Date;
     organizer?: { _id: string, name: string }
-    category?: { _id: string, firstName: string, lastName: string }
+    category: { _id: string, firstName: string, lastName: string }
 }
 
 const EventSchema = new Schema({

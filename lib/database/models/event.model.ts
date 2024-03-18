@@ -9,11 +9,11 @@ export interface IEvent extends Document {
     imageUrl: string;
     createdAt?: Date;
     location?: string;
-    endDateTime?: Date;
+    endDateTime: Date;
     description?: string;
-    startDateTime?: Date;
-    organizer?: { _id: string, name: string }
-    category: { _id: string, firstName: string, lastName: string }
+    startDateTime: Date;
+    category: { _id: string, name: string }
+    organizer: { _id: string, firstName: string, lastName: string }
 }
 
 const EventSchema = new Schema({

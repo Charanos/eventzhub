@@ -14,8 +14,8 @@ export default async function Home({ searchParams }: SearchParamProps) {
 
   const events = await getAllEvents({
     page,
-    limit: 3,
     category,
+    limit: 10,
     query: searchText,
   });
 
@@ -62,7 +62,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
 
         <Collection
           page={1}
-          limit={3}
+          limit={10}
           data={events?.data}
           urlParamName="allevents"
           collectionType="All_Events"

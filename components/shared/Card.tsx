@@ -18,7 +18,7 @@ const Card = ({ event, hidePrice, hasOrderLink }: CardProps) => {
   const isEventCreator = userId === event.organizer?._id.toString();
 
   return (
-    <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white/65 backdrop-blur-sm shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
+    <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-red/65 backdrop-blur-sm shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
       <Link
         href={`/events/${event._id}`}
         style={{ backgroundImage: `url(${event.imageUrl})` }}
@@ -30,10 +30,10 @@ const Card = ({ event, hidePrice, hasOrderLink }: CardProps) => {
         <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white/40 p-2 shadow-sm transition-all hover:bg-white/80 ">
           <Link href={`/events/${event._id}/update`}>
             <Image
-              src="\assets\icons\edit.svg"
               alt="edit"
               width={20}
               height={20}
+              src="\assets\icons\edit.svg"
             />
           </Link>
 
@@ -73,10 +73,10 @@ const Card = ({ event, hidePrice, hasOrderLink }: CardProps) => {
             <Link href={`/orders?eventId=${event._id}`} className="flex gap-2">
               <p className="text-primary-500 uppercase">order details</p>
               <Image
-                src="\assets\icons\arrow.svg"
                 alt="arrow"
                 width={10}
                 height={10}
+                src="\assets\icons\arrow.svg"
               />
             </Link>
           )}

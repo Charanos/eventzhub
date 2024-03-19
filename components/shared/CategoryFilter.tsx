@@ -9,23 +9,29 @@ import {
   Select,
   SelectItem,
   SelectValue,
-  SelectTrigger,
   SelectContent,
+  SelectTrigger,
 } from "@/components/ui/select";
 
 const CategoryFilter = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams() || new URLSearchParams();
   const [categories, setCategories] = useState<ICategory[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const getCategories = async () => {
-      const categoryList = await getAllCategories();
-
-      categoryList && setCategories(categoryList as ICategory[]);
+    const fetchCategories = async () => {
+      try {
+        const categoryList = await getAllCategories();
+        setCategories(categoryList || []);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        setLoading(false);
+      }
     };
 
-    getCategories();
+    fetchCategories();
   }, []);
 
   const onSelectCategory = (category: string) => {
@@ -33,9 +39,9 @@ const CategoryFilter = () => {
 
     if (category && category !== "All") {
       newUrl = formUrlQuery({
-        params: searchParams.toString(),
         key: "category",
         value: category,
+        params: searchParams.toString(),
       });
     } else {
       newUrl = removeKeysFromQuery({
@@ -46,6 +52,10 @@ const CategoryFilter = () => {
 
     router.push(newUrl, { scroll: false });
   };
+
+  if (loading) {
+    return <div>Loading categories...</div>;
+  }
 
   return (
     <Select onValueChange={(value: string) => onSelectCategory(value)}>

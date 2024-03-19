@@ -9,8 +9,8 @@ import {
 } from "@/lib/actions/event.actions";
 
 const EventDetails = async ({
-  params: { id },
   searchParams,
+  params: { id },
 }: SearchParamProps) => {
   const event = await getEventById(id);
 
@@ -29,7 +29,7 @@ const EventDetails = async ({
             width={700}
             height={700}
             alt="event image"
-            className="h-full w-full min-h-[300px] object-contain object-center"
+            className="h-full w-full min-h-[300px] object-cover object-center"
           />
 
           <div className="flex w-full flex-col gap-8 p-5 md:p-10">
@@ -83,10 +83,10 @@ const EventDetails = async ({
 
               <div className="p-regular-20 flex items-center gap-3">
                 <Image
-                  src="\assets\icons\location.svg"
-                  alt="location"
                   width={32}
                   height={32}
+                  alt="location"
+                  src="\assets\icons\location.svg"
                 />
 
                 <p className="p-medium-16 lg:p-regular-20">{event.location}</p>

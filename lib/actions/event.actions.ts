@@ -23,8 +23,8 @@ const getCategoryByName = async (name: string) => {
 const populateEvent = (query: any) => {
     return query
         .populate({
-            path: "organizer",
             model: User,
+            path: "organizer",
             select: "_id firstName lastName",
         })
         .populate({ path: "category", model: Category, select: "_id name" });
@@ -40,8 +40,8 @@ export async function createEvent({ userId, event, path }: CreateEventParams) {
 
         const newEvent = await Event.create({
             ...event,
-            category: event.categoryId,
             organizer: userId,
+            category: event.categoryId,
         });
         revalidatePath(path);
 
@@ -78,8 +78,8 @@ export async function updateEvent({ userId, event, path }: UpdateEventParams) {
 
         const updatedEvent = await Event.findByIdAndUpdate(
             event._id,
+            { new: true },
             { ...event, category: event.categoryId },
-            { new: true }
         );
         revalidatePath(path);
 
@@ -173,10 +173,10 @@ export async function getEventsByUser({
 
 // GET RELATED EVENTS: EVENTS WITH SAME CATEGORY
 export async function getRelatedEventsByCategory({
-    categoryId,
     eventId,
-    limit = 3,
     page = 1,
+    limit = 3,
+    categoryId,
 }: GetRelatedEventsByCategoryParams) {
     try {
         await connectToDatabase();

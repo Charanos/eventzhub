@@ -6,29 +6,25 @@ import { formUrlQuery } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 
 type PaginationProps = {
-  totalPages: number;
   page: number;
+  totalPages: number;
   urlParamName?: string;
 };
 
-const Pagination = ({
-  page,
-  totalPages,
-  urlParamName = "page",
-}: PaginationProps) => {
+const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleClick = (newPage: number) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      const newUrl = formUrlQuery({
-        key: urlParamName,
-        value: newPage.toString(),
-        params: searchParams.toString(),
-      });
+  const onClick = (btnType: string) => {
+    const pageValue = btnType === "next" ? Number(page) + 1 : Number(page) - 1;
 
-      router.push(newUrl, { scroll: false });
-    }
+    const newUrl = formUrlQuery({
+      params: searchParams.toString(),
+      key: urlParamName || "page",
+      value: pageValue.toString(),
+    });
+
+    router.push(newUrl, { scroll: false });
   };
 
   return (
@@ -37,17 +33,17 @@ const Pagination = ({
         size="lg"
         variant="outline"
         className="w-28"
-        disabled={page <= 1}
-        onClick={() => handleClick(page - 1)}
+        onClick={() => onClick("prev")}
+        disabled={Number(page) <= 1}
       >
         Previous
       </Button>
       <Button
         size="lg"
-        className="w-28"
         variant="outline"
-        disabled={page >= totalPages}
-        onClick={() => handleClick(page + 1)}
+        className="w-28"
+        onClick={() => onClick("next")}
+        disabled={Number(page) >= totalPages}
       >
         Next
       </Button>

@@ -6,8 +6,8 @@ import { formUrlQuery } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 
 type PaginationProps = {
-  page: number;
   totalPages: number;
+  page: string | number;
   urlParamName?: string;
 };
 

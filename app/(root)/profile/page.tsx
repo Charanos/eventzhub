@@ -1,14 +1,22 @@
 import Link from "next/link";
 import { auth } from "@clerk/nextjs";
+import { SearchParamProps } from "@/types";
 import { Button } from "@/components/ui/button";
 import Collection from "@/components/shared/Collection";
+import { IOrder } from "@/lib/database/models/order.model";
 import { getEventsByUser } from "@/lib/actions/event.actions";
+import { getOrdersByUser } from "@/lib/actions/order.actions";
 
-const ProfilePage = async () => {
+const ProfilePage = async ({ searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
-  const organizedEvents = await getEventsByUser({ userId, page: 1 });
+  const ordersPage = Number(searchParams?.ordersPage) || 1;
+  const eventsPage = Number(searchParams?.ordersPage) || 1;
+  const orders = await getOrdersByUser({ userId, page: ordersPage });
+  const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
+
+  const organizedEvents = await getEventsByUser({ userId, page: eventsPage });
 
   return (
     <>
@@ -23,20 +31,20 @@ const ProfilePage = async () => {
             </Link>
           </Button>
         </div>
-      </section>
 
-      {/* <section className="wrapper my-8">
-        <Collection
-          page={1}
-          limit={3}
-          totalPages={2}
-          data={events?.data}
-          urlParamName='ordersPage'
-          collectionType="My_Tickets"
-          emptyTitle="No Event Ticket Purchased Yet"
-          emptyStateSubText="No worries - Plenty of exciting events to explore!"
-        />
-      </section> */}
+        <section className="wrapper my-8">
+          <Collection
+            limit={3}
+            page={ordersPage}
+            data={orderedEvents}
+            urlParamName="ordersPage"
+            collectionType="My_Tickets"
+            totalPages={orders?.totalPages}
+            emptyTitle="No Event Ticket Purchased Yet"
+            emptyStateSubText="No worries - Plenty of exciting events to explore!"
+          />
+        </section>
+      </section>
 
       {/* events organized */}
       <section className="py-5 bg-primary-50 bg-dotted-pattern bg-cover bg-center md:py-10 mt-20">
@@ -52,12 +60,12 @@ const ProfilePage = async () => {
 
         <section className="wrapper my-8">
           <Collection
-            page={1}
-            limit={6}
-            totalPages={2}
+            limit={3}
+            page={eventsPage}
             urlParamName="eventsPage"
             data={organizedEvents?.data}
             collectionType="Events_Organized"
+            totalPages={organizedEvents?.totalPages}
             emptyTitle="You Haven't Created Any Events Yet"
             emptyStateSubText="You can create some right now!"
           />

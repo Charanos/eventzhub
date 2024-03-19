@@ -112,13 +112,13 @@ const EventDetails = async ({
       <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
         <h2 className="h2-bold capitalize">related events</h2>
         <Collection
-          page={1}
-          limit={6}
-          totalPages={2}
+          limit={3}
           data={relatedEvents?.data}
           collectionType="All_Events"
           emptyTitle="No Events Listed"
+          page={searchParams.page as string}
           emptyStateSubText="Come Back Later"
+          totalPages={relatedEvents?.totalPages}
         />
       </section>
     </>

@@ -1,6 +1,7 @@
-import { IEvent } from "@/lib/database/models/event.model";
 import React from "react";
 import Card from "./Card";
+import Pagination from "./Pagination";
+import { IEvent } from "@/lib/database/models/event.model";
 
 type CollectionProps = {
   data: IEvent[];
@@ -43,6 +44,14 @@ const Collection = ({
               );
             })}
           </ul>
+
+          {totalPages > 1 && (
+            <Pagination
+              page={page}
+              totalPages={totalPages}
+              urlParamName={urlParamName}
+            />
+          )}
         </div>
       ) : (
         <div className="flex-center wrapper min-h-[200px] w-full flex-col gap-6 rounded-[14px] bg-grey-50 py-28 text-center">
